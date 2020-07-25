@@ -1,0 +1,39 @@
+<table>
+  <thead>
+    <th>
+      Id:
+    </th>
+    <th>
+      Name:
+    </th>
+    <th>
+      Food pairings:
+    </th>
+  </thead>
+  <tr
+    [class.selected]="beer === selectedBeer"
+    *ngFor="let beer of beers"
+    (click)="selectBeer(beer)"
+  >
+    <td>
+      {{ beer.id }}
+    </td>
+    <td>
+      {{ beer.name }}
+    </td>
+    <td>
+      <div *ngFor="let foodPairing of beer.food_pairing">
+        <span>{{ foodPairing }};</span>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<div *ngIf="selectedBeer" class="details">
+  You've selected {{ selectedBeer.name }} that is of
+  {{ selectedBeer.volume.value }}{{ selectedBeer.volume.unit }} volume. It is
+  great with dishes such as:
+  <div class="pairings" *ngFor="let pairing of selectedBeer.food_pairing">
+    <span>- {{ pairing }}</span>
+  </div>
+</div>
