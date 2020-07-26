@@ -19,21 +19,20 @@
       {{ beer.id }}
     </td>
     <td>
-      {{ beer.name }}
+      {{ beer.name | uppercase }}
     </td>
     <td>
       <div *ngFor="let foodPairing of beer.food_pairing">
         <span>{{ foodPairing }};</span>
       </div>
     </td>
+    <td>
+      <label>
+        name:
+        <input [(ngModel)]="beer.name" placeholder="name" />
+      </label>
+    </td>
   </tr>
 </table>
 
-<div *ngIf="selectedBeer" class="details">
-  You've selected {{ selectedBeer.name }} that is of
-  {{ selectedBeer.volume.value }}{{ selectedBeer.volume.unit }} volume. It is
-  great with dishes such as:
-  <div class="pairings" *ngFor="let pairing of selectedBeer.food_pairing">
-    <span>- {{ pairing }}</span>
-  </div>
-</div>
+<app-beer-details [beer]="selectedBeer"></app-beer-details>

@@ -1,0 +1,7 @@
+<div *ngIf="beer" class="details">
+  You've selected {{ beer.name }} that is of {{ beer.volume.value
+  }}{{ beer.volume.unit }} volume. It is great with dishes such as:
+  <div class="pairings" *ngFor="let pairing of beer.food_pairing">
+    <span>- {{ pairing }}</span>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { BEERS } from './../../mocks';
+import { BeersService } from './../beers.service';
 import { Beer } from './../../models/index';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./beers.component.css'],
 })
 export class BeersComponent implements OnInit {
-  beers: Beer[] = BEERS;
+  beers: Beer[];
   selectedBeer: Beer;
 
-  constructor() {}
+  constructor(private beersService: BeersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.beers = this.beersService.getBeers();
+  }
 
   selectBeer(beer: Beer): void {
     this.selectedBeer = beer;
