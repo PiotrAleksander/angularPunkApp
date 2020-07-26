@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BeersComponent } from './beers/beers.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +16,10 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
     HeaderComponent,
     BeersComponent,
     BeerDetailsComponent,
+    DashboardComponent,
+    NotFoundComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

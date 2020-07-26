@@ -10,11 +10,7 @@
       Food pairings:
     </th>
   </thead>
-  <tr
-    [class.selected]="beer === selectedBeer"
-    *ngFor="let beer of beers"
-    (click)="selectBeer(beer)"
-  >
+  <tr *ngFor="let beer of beers" routerLink="beer/{{ beer.id }}">
     <td>
       {{ beer.id }}
     </td>
@@ -34,5 +30,3 @@
     </td>
   </tr>
 </table>
-
-<app-beer-details [beer]="selectedBeer"></app-beer-details>

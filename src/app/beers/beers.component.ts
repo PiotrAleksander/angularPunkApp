@@ -1,6 +1,7 @@
 import { BeersService } from './../beers.service';
 import { Beer } from './../../models/index';
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-beers',
@@ -9,15 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeersComponent implements OnInit {
   beers: Beer[];
-  selectedBeer: Beer;
 
   constructor(private beersService: BeersService) {}
 
   ngOnInit(): void {
-    this.beers = this.beersService.getBeers();
-  }
-
-  selectBeer(beer: Beer): void {
-    this.selectedBeer = beer;
+    this.beersService
+      .getBeers()
+      .pipe(tap((beers) => console.log(beers)))
+      .subscribe((beers) => (this.beers = beers));
   }
 }
