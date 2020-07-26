@@ -1,21 +1,26 @@
-import { BEERS } from './../mocks';
 import { Injectable } from '@angular/core';
 import { Beer } from '../models';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+const BASE_URL = 'https://api.punkapi.com/v2/';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BeersService {
-  private beers: Beer[] = BEERS;
+  private beers: Beer[];
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   getBeers(): Observable<Beer[]> {
-    return of(this.beers);
+    return this.httpClient.get<Beer[]>(`${BASE_URL}beers`);
   }
 
   getBeer(id: number): Observable<Beer> {
-    return of(this.beers.find((beer) => beer.id === id));
+    return this.httpClient
+      .get<Beer[]>(`${BASE_URL}beers/${id}`)
+      .pipe(map((beers) => beers[0]));
   }
 }
