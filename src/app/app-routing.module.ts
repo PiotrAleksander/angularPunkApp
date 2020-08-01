@@ -1,10 +1,10 @@
-import { NotFoundComponent } from './not-found/not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BeersComponent } from './beers/beers.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BeersComponent } from './beers/beers.component';
 
 const routes: Route[] = [
   {

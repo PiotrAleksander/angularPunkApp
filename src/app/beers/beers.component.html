@@ -1,32 +1,24 @@
-<table>
-  <thead>
-    <th>
-      Id:
-    </th>
-    <th>
-      Name:
-    </th>
-    <th>
-      Food pairings:
-    </th>
-  </thead>
-  <tr *ngFor="let beer of beers" routerLink="beer/{{ beer.id }}">
-    <td>
-      {{ beer.id }}
-    </td>
-    <td>
-      {{ beer.name | uppercase }}
-    </td>
-    <td>
-      <div *ngFor="let foodPairing of beer.food_pairing">
-        <span>{{ foodPairing }};</span>
-      </div>
-    </td>
-    <td>
-      <label>
-        name:
-        <input [(ngModel)]="beer.name" placeholder="name" />
-      </label>
-    </td>
-  </tr>
-</table>
+<mat-table [dataSource]="beers">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+    <mat-cell *matCellDef="let beer">{{ beer.id }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let beer">
+      {{ beer.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tagline">
+    <mat-header-cell *matHeaderCellDef>Tagline</mat-header-cell>
+    <mat-cell *matCellDef="let beer">{{ beer.tagline }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let beer; columns: displayedColumns"
+    routerLink="beer/{{ beer.id }}"
+  ></mat-row>
+</mat-table>
