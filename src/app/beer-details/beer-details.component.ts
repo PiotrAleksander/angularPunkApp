@@ -1,5 +1,5 @@
-import { BeersService } from './../beers.service';
-import { Beer } from './../../models/index';
+import { Store, select } from '@ngrx/store';
+import { Beer, AppState } from './../../models/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,15 +13,17 @@ export class BeerDetailsComponent implements OnInit {
   beer: Beer;
 
   constructor(
-    private beersService: BeersService,
     private activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     const idString = this.activatedRoute.snapshot.paramMap.get('id');
     const id = parseInt(idString, 0);
-    this.beersService.getBeer(id).subscribe((beer) => (this.beer = beer));
+    this.store.pipe(select('beers')).subscribe(({ list }) => {
+      this.beer = list.find((beer) => beer.id === id);
+    });
   }
 
   onClickBackButton(): void {

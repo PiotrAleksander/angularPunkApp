@@ -17,10 +17,4 @@ export class BeersService {
   getBeers(): Observable<Beer[]> {
     return this.httpClient.get<Beer[]>(`${BASE_URL}beers`);
   }
-
-  getBeer(id: number): Observable<Beer> {
-    return this.httpClient
-      .get<Beer[]>(`${BASE_URL}beers/${id}`)
-      .pipe(map((beers) => beers[0]));
-  }
 }

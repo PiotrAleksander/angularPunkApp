@@ -19,3 +19,13 @@ export interface Beer {
   };
   food_pairing: string[];
 }
+
+export interface BeersState {
+  list: Beer[];
+  isLoading: boolean;
+  isError: boolean;
+}
+
+export interface AppState {
+  beers: BeersState;
+}
